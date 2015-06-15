@@ -1,0 +1,21 @@
+language: ruby
+
+before_script:
+  - ./copy_repos.sh
+  - ./changing_old_files.sh
+
+rvm:
+  - 2.0.0
+  - 2.1.2
+  - 2.2.1
+
+script:
+  - script/ci/travis/install-gem-ci.rb
+  - bundle exec rake unit
+
+notifications:
+  email:
+    recipients:
+      - joshua.moody@xamarin.com
+    on_success: change
+    on_failure: always
